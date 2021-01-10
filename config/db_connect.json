@@ -1,0 +1,6 @@
+{
+    "local": "mongodb://localhost:27017/build-pro-db",
+    "remote_stage": "mongodb+srv://aslene:0tUBFYt4FbE1QBGm@cluster0.2qwx1.mongodb.net/test-build-pro-db?retryWrites=true&w=majority",
+    "remote_production": "mongodb+srv://aslene:0tUBFYt4FbE1QBGm@cluster0.2qwx1.mongodb.net/build-pro-db?retryWrites=true&w=majority",
+    "test":"mongodb://localhost:27017/test-build-pro-db"
+}
