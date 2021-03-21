@@ -9,9 +9,18 @@ const cors = require('cors');
 const usersRouter = require('./routes/users');
 const contactRouter= require('./routes/contact');
 const entrepriseRouter= require('./routes/entreprise');
+const productRouter= require('./routes/product');
+const trendRouter= require('./routes/trend');
+const pubRouter= require('./routes/pub');
+const inspireRouter= require('./routes/inspire');
 const e_projectsRouter= require('./routes/e_projects');
 const devisRouter= require('./routes/devis');
 const entrepriseLogoUploader = require('./routes/uploads/entreprise-logo-upload');
+const productImageUploader = require('./routes/uploads/product-image-upload');
+const trendImageUploader = require('./routes/uploads/trend-image-upload');
+const pubImageUploader = require('./routes/uploads/pub-image-upload');
+const inspireImageUploader = require('./routes/uploads/inspire-image-upload');
+
 const e_projectsPhotoUploader = require('./routes/uploads/e_projects-photo-upload');
 
 const materialsRouter= require('./routes/materials');
@@ -32,9 +41,18 @@ app.use(express.urlencoded({
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/contact' ,contactRouter);
 app.use('/api/v1/entreprise' ,entrepriseRouter);
+app.use('/api/v1/product' ,productRouter);
+app.use('/api/v1/trend' ,trendRouter);
+app.use('/api/v1/pub' ,pubRouter);
+app.use('/api/v1/inspire' ,inspireRouter);
 app.use('/api/v1/e_projects' ,e_projectsRouter);
 app.use('/api/v1/devis' ,devisRouter);
 app.use('/api/v1/upload/entreprise/logo',entrepriseLogoUploader);
+app.use('/api/v1/upload/product/image',productImageUploader);
+app.use('/api/v1/upload/trend/image',trendImageUploader);
+app.use('/api/v1/upload/pub/image',pubImageUploader);
+app.use('/api/v1/upload/inspire/image',inspireImageUploader);
+
 app.use('/api/v1/upload/e_projects/photo',e_projectsPhotoUploader);
 app.use('/api/v1/materials', materialsRouter);
 app.use('/api/v1/tasks', tasksRouter);

@@ -26,6 +26,10 @@ const devisSchema = new Schema({
         type: String,
         trim: true
     },
+    about: {
+        type: String,
+        trim: true
+    },
     cat: {
         type: String,
         trim: true
