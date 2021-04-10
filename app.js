@@ -1,9 +1,48 @@
 const createError = require('http-errors');
 const express = require('express');
+const app = express();
 const path = require('path');
 const logger = require('morgan');
 const cors = require('cors');
+const cloudinary = require('cloudinary').v2
+const bodyParser = require('body-parser');
 
+// cloudinary configuration
+cloudinary.config({
+  cloud_name: "ddejpouvy",
+  api_key: "755331696423856",
+  api_secret: "x7fys7aeymVPlmtMjaIBVpIwmBs"
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", (request, response) => {
+  response.json({ message: "Hey! This is your server response!" });
+});
+
+// image upload API
+app.post("/image-upload", (request, response) => {
+    // collected image from a user
+    const data = {
+      image: request.body.image,
+    }
+
+    // upload image here
+    cloudinary.uploader.upload(data.image)
+    .then((result) => {
+      response.status(200).send({
+        message: "success",
+        result,
+      });
+    }).catch((error) => {
+      response.status(500).send({
+        message: "failure",
+        error,
+      });
+    });
+
+});
 
 
 const usersRouter = require('./routes/users');
@@ -27,7 +66,7 @@ const materialsRouter= require('./routes/materials');
 const projectsRouter= require('./routes/projects');
 const tasksRouter= require('./routes/tasks');
 
-const app = express();
+
 app.use(cors());
 
 app.use(logger('dev'));
