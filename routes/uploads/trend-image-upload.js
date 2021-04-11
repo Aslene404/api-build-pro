@@ -69,13 +69,16 @@ app.get("/", (request, response) => {
 
  
  async function updateTrend(id, path) {
-    await cloudinary.uploader.upload('uploads/photos/'+path, function(error, result) { console.log(result);xd=result.url });
-     await Trend.findByIdAndUpdate({ _id: id }, { $set: { image_url: xd } },
-        function (err, doc) {
-            if (err) {
-                next();
-            }
-        });
+     await cloudinary.uploader.upload('uploads/photos/'+path, function(error, result) { console.log(result);xd=result.url });
+     
+        setTimeout(function(){ Trend.findByIdAndUpdate({ _id: id }, { $set: { image_url: xd } },
+            function (err, doc) {
+                if (err) {
+                    next();
+                }
+            }); }, 10000);
+    
+    
 }
 
 router.post('/', upload, function (req, res, next) {

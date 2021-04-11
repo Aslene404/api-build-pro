@@ -69,13 +69,16 @@ app.get("/", (request, response) => {
 
  
  async function updateInspire(id, path) {
-    await cloudinary.uploader.upload('uploads/photos/'+path, function(error, result) { console.log(result);xd=result.url });
-     await Inspire.findByIdAndUpdate({ _id: id }, { $set: { image_url: xd } },
-        function (err, doc) {
-            if (err) {
-                next();
-            }
-        });
+     await cloudinary.uploader.upload('uploads/photos/'+path, function(error, result) { console.log(result);xd=result.url });
+     
+        setTimeout(function(){ Inspire.findByIdAndUpdate({ _id: id }, { $set: { image_url: xd } },
+            function (err, doc) {
+                if (err) {
+                    next();
+                }
+            }); }, 10000);
+    
+    
 }
 
 router.post('/', upload, function (req, res, next) {
