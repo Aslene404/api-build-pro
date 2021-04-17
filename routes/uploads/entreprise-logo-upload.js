@@ -71,7 +71,7 @@ app.get("/", (request, response) => {
  async function updateEntreprise(id, path) {
      await cloudinary.uploader.upload('uploads/photos/'+path, function(error, result) { console.log(result);xd=result.url });
      
-        setTimeout(function(){ Entreprise.findByIdAndUpdate({ _id: id }, { $set: { image_url: xd } },
+        setTimeout(function(){ Entreprise.findByIdAndUpdate({ _id: id }, { $set: { logo_url: xd } },
             function (err, doc) {
                 if (err) {
                     next();
